@@ -9,9 +9,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -26,9 +31,46 @@ public class MainActivity extends Activity {
 
 		// setData1();
 		// setData2();
+//		setData3();
+		
+		setData4();
+	}
 
-		setData3();
+	private void setData4() {
+		String[] text = { "honinbo-shusakus-185th-birthday",
+				"denmark-national-day-2014",
+				"alejandro-obregons-93rd-birthday",
+				"julija-beniuseviciute-zymantienes-169th-birthday",
+				"italian-republic-day-2014", "dragon-boat-festival-2014", };
+		
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		
+		for (int i=0; i<text.length; i++) {
+			Map<String, String> item = new HashMap<String, String>();
+			item.put("text1", text[i].substring(0, 5));
+			item.put("text2", text[i]);
+			data.add(item);
+		}
+		
+		String [] from = new String[] {"text1", "text2"};
+		int [] to = new int[] {android.R.id.text1, android.R.id.text2};
+		SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, from, to);
+		listView1.setAdapter(adapter);
+		
+		listView1.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				TextView textView1 = (TextView) view.findViewById(android.R.id.text1);
+				TextView textView2 = (TextView) view.findViewById(android.R.id.text2);
+				
+				String detail = "position : " + position + ", title : " + textView1.getText() + ", sub-title : " + textView2.getText();
+				
+				Toast.makeText(MainActivity.this, detail, Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 
 	private void setData3() {
