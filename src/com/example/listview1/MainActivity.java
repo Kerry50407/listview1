@@ -28,7 +28,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		listView1 = (ListView) findViewById(R.id.listView1);
-		// Test line
 		// setData1();
 		// setData2();
 //		setData3();
